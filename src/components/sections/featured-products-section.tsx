@@ -80,11 +80,11 @@ export const FeaturedProductsSection = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-6xl font-tech font-black mb-6">
-            <span className="text-foreground glitch" data-text="FEATURED">
+            <span className="text-foreground">
               FEATURED
             </span>
             <br />
-            <span className="text-primary glitch" data-text="PRODUCTS">
+            <span className="text-primary">
               PRODUCTS
             </span>
           </h2>

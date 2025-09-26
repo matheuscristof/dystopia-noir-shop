@@ -43,11 +43,11 @@ export const NewsletterSection = () => {
             </Badge>
             
             <h2 className="text-4xl md:text-5xl font-tech font-black mb-6">
-              <span className="text-foreground glitch" data-text="ENTER THE">
+              <span className="text-foreground">
                 ENTER THE
               </span>
               <br />
-              <span className="text-primary glitch" data-text="DYSTOPIA">
+              <span className="text-primary">
                 DYSTOPIA
               </span>
             </h2>

@@ -36,10 +36,10 @@ export const HeroSection = () => {
 
           {/* Main Headline */}
           <h1 className="text-5xl md:text-7xl font-tech font-black mb-6 animate-slide-up" style={{animationDelay: '0.2s'}}>
-            <span className="block text-foreground glitch" data-text="FUTURE">
+            <span className="block text-foreground">
               FUTURE
             </span>
-            <span className="block text-primary glitch" data-text="IS NOW">
+            <span className="block text-primary">
               IS NOW
             </span>
           </h1>

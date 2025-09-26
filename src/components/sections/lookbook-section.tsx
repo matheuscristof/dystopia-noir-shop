@@ -62,7 +62,7 @@ export const LookbookSection = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-6xl font-tech font-black mb-6">
-            <span className="text-foreground glitch" data-text="LOOKBOOK">
+            <span className="text-foreground">
               LOOKBOOK
             </span>
           </h2>
@@ -125,10 +125,10 @@ export const LookbookSection = () => {
 
                 {/* Content */}
                 <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <div className="space-y-2">
-                    <h3 className="text-xl md:text-2xl font-tech font-bold text-foreground glitch" data-text={image.title}>
-                      {image.title}
-                    </h3>
+                <div className="space-y-2">
+                  <h3 className="text-xl md:text-2xl font-tech font-bold text-foreground">
+                    {image.title}
+                  </h3>
                     <p className="text-muted-foreground font-mono text-sm">
                       {image.subtitle}
                     </p>

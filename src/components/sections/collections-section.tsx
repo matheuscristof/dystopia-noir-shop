@@ -55,7 +55,7 @@ export const CollectionsSection = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-6xl font-tech font-black mb-6">
-            <span className="text-foreground glitch" data-text="COLLECTIONS">
+            <span className="text-foreground">
               COLLECTIONS
             </span>
           </h2>
@@ -100,7 +100,7 @@ export const CollectionsSection = () => {
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   <div className="space-y-3">
                     <div>
-                      <h3 className="text-xl md:text-2xl font-tech font-bold text-foreground glitch" data-text={collection.glitchText}>
+                      <h3 className="text-xl md:text-2xl font-tech font-bold text-foreground">
                         {collection.title}
                       </h3>
                       <p className="text-muted-foreground font-mono text-sm">

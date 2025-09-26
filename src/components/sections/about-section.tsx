@@ -14,11 +14,11 @@ export const AboutSection = () => {
           {/* Section Header */}
           <div className="mb-16">
             <h2 className="text-4xl md:text-6xl font-tech font-black mb-8">
-              <span className="text-foreground glitch" data-text="ABOUT">
+              <span className="text-foreground">
                 ABOUT
               </span>
               <br />
-              <span className="text-primary glitch" data-text="DYSTOPIA">
+              <span className="text-primary">
                 DYSTOPIA
               </span>
             </h2>

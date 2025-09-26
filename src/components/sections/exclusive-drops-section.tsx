@@ -106,11 +106,11 @@ export const ExclusiveDropsSection = () => {
           </div>
           
           <h2 className="text-4xl md:text-6xl font-tech font-black mb-6">
-            <span className="text-foreground glitch" data-text="DROPS">
+            <span className="text-foreground">
               DROPS
             </span>
             <br />
-            <span className="text-destructive glitch" data-text="EXCLUSIVOS">
+            <span className="text-destructive">
               EXCLUSIVOS
             </span>
           </h2>
@@ -195,7 +195,7 @@ export const ExclusiveDropsSection = () => {
               {/* Product Info */}
               <div className="p-6 space-y-4">
                 <div>
-                  <h3 className="font-tech font-bold text-lg text-foreground glitch" data-text={product.name}>
+                  <h3 className="font-tech font-bold text-lg text-foreground">
                     {product.name}
                   </h3>
                   <p className="text-sm text-muted-foreground font-mono">

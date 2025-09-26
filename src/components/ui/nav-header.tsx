@@ -38,8 +38,7 @@ export const NavHeader = ({ cartItemsCount = 0, onCartClick }: NavHeaderProps) =
               <a
                 key={item.label}
                 href={item.href}
-                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors glitch"
-                data-text={item.label}
+                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
               >
                 {item.label}
               </a>
