@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import streetwearImage from "@/assets/collection-streetwear.jpg";
@@ -12,7 +13,7 @@ interface Collection {
   image: string;
   itemCount: number;
   isLimited?: boolean;
-  glitchText: string;
+  href: string;
 }
 
 const collections: Collection[] = [
@@ -22,7 +23,7 @@ const collections: Collection[] = [
     subtitle: "Essential Tech Wear",
     image: streetwearImage,
     itemCount: 24,
-    glitchText: "STREETWEAR"
+    href: "/streetwear"
   },
   {
     id: "drops",
@@ -31,7 +32,7 @@ const collections: Collection[] = [
     image: dropsImage,
     itemCount: 8,
     isLimited: true,
-    glitchText: "LIMITED DROPS"
+    href: "/drops"
   },
   {
     id: "accessories",
@@ -39,7 +40,7 @@ const collections: Collection[] = [
     subtitle: "Complete the Look",
     image: accessoriesImage,
     itemCount: 16,
-    glitchText: "ACESSÓRIOS"
+    href: "/accessories"
   }
 ];
 
@@ -116,8 +117,11 @@ export const CollectionsSection = () => {
                         variant="secondary" 
                         size="sm"
                         className="opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300"
+                        asChild
                       >
-                        Explorar
+                        <Link to={collection.href}>
+                          Explorar
+                        </Link>
                       </Button>
                     </div>
                   </div>

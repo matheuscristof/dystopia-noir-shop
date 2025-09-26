@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { ShoppingCart, Menu, X, User, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -11,11 +12,12 @@ interface NavHeaderProps {
 
 export const NavHeader = ({ cartItemsCount = 0, onCartClick }: NavHeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
 
   const navItems = [
-    { label: "Streetwear", href: "#streetwear" },
-    { label: "Limited Drops", href: "#drops" },
-    { label: "Acessórios", href: "#accessories" },
+    { label: "Streetwear", href: "/streetwear" },
+    { label: "Limited Drops", href: "/drops" },
+    { label: "Acessórios", href: "/accessories" },
     { label: "Lookbook", href: "#lookbook" },
   ];
 
@@ -25,23 +27,39 @@ export const NavHeader = ({ cartItemsCount = 0, onCartClick }: NavHeaderProps) =
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center space-x-4">
-            <img 
-              src={dystopiaLogo} 
-              alt="Dystopia" 
-              className="h-8 w-auto neon-glow"
-            />
+            <Link to="/">
+              <img 
+                src={dystopiaLogo} 
+                alt="Dystopia" 
+                className="h-8 w-auto neon-glow"
+              />
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
-              >
-                {item.label}
-              </a>
+              item.href.startsWith("#") ? (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <Link
+                  key={item.label}
+                  to={item.href}
+                  className={`text-sm font-medium transition-colors ${
+                    location.pathname === item.href 
+                      ? "text-primary" 
+                      : "text-muted-foreground hover:text-primary"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              )
             ))}
           </div>
 
@@ -86,14 +104,29 @@ export const NavHeader = ({ cartItemsCount = 0, onCartClick }: NavHeaderProps) =
           <div className="md:hidden border-t border-border bg-card/95 backdrop-blur-md">
             <div className="px-4 py-6 space-y-4">
               {navItems.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className="block text-base font-medium text-foreground hover:text-primary transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.label}
-                </a>
+                item.href.startsWith("#") ? (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    className="block text-base font-medium text-foreground hover:text-primary transition-colors"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={item.label}
+                    to={item.href}
+                    className={`block text-base font-medium transition-colors ${
+                      location.pathname === item.href 
+                        ? "text-primary" 
+                        : "text-foreground hover:text-primary"
+                    }`}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                )
               ))}
               <div className="pt-4 border-t border-border">
                 <Button variant="ghost" size="sm" className="w-full justify-start">
