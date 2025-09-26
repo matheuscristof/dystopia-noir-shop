@@ -2,57 +2,83 @@ import { Instagram, Twitter, Youtube, Mail, Phone, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import dystopiaLogo from "@/assets/dystopia-logo.png";
-
 export const FooterSection = () => {
   const currentYear = new Date().getFullYear();
-
-  const footerSections = [
-    {
-      title: "SHOP",
-      links: [
-        { label: "Streetwear", href: "#streetwear" },
-        { label: "Limited Drops", href: "#drops" },
-        { label: "Acessórios", href: "#accessories" },
-        { label: "Sale", href: "#sale" },
-      ]
-    },
-    {
-      title: "SUPORTE",
-      links: [
-        { label: "Central de Ajuda", href: "#help" },
-        { label: "Sizing Guide", href: "#sizing" },
-        { label: "Shipping Info", href: "#shipping" },
-        { label: "Returns", href: "#returns" },
-      ]
-    },
-    {
-      title: "EMPRESA",
-      links: [
-        { label: "About Dystopia", href: "#about" },
-        { label: "Careers", href: "#careers" },
-        { label: "Press", href: "#press" },
-        { label: "Stores", href: "#stores" },
-      ]
-    },
-    {
-      title: "LEGAL",
-      links: [
-        { label: "Política de Privacidade", href: "#privacy" },
-        { label: "Termos de Uso", href: "#terms" },
-        { label: "Cookies", href: "#cookies" },
-        { label: "Acessibilidade", href: "#accessibility" },
-      ]
-    }
-  ];
-
-  const socialLinks = [
-    { icon: Instagram, href: "#", label: "Instagram" },
-    { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: Youtube, href: "#", label: "YouTube" },
-  ];
-
-  return (
-    <footer className="relative bg-card border-t border-border">
+  const footerSections = [{
+    title: "SHOP",
+    links: [{
+      label: "Streetwear",
+      href: "#streetwear"
+    }, {
+      label: "Limited Drops",
+      href: "#drops"
+    }, {
+      label: "Acessórios",
+      href: "#accessories"
+    }, {
+      label: "Sale",
+      href: "#sale"
+    }]
+  }, {
+    title: "SUPORTE",
+    links: [{
+      label: "Central de Ajuda",
+      href: "#help"
+    }, {
+      label: "Sizing Guide",
+      href: "#sizing"
+    }, {
+      label: "Shipping Info",
+      href: "#shipping"
+    }, {
+      label: "Returns",
+      href: "#returns"
+    }]
+  }, {
+    title: "EMPRESA",
+    links: [{
+      label: "About Dystopia",
+      href: "#about"
+    }, {
+      label: "Careers",
+      href: "#careers"
+    }, {
+      label: "Press",
+      href: "#press"
+    }, {
+      label: "Stores",
+      href: "#stores"
+    }]
+  }, {
+    title: "LEGAL",
+    links: [{
+      label: "Política de Privacidade",
+      href: "#privacy"
+    }, {
+      label: "Termos de Uso",
+      href: "#terms"
+    }, {
+      label: "Cookies",
+      href: "#cookies"
+    }, {
+      label: "Acessibilidade",
+      href: "#accessibility"
+    }]
+  }];
+  const socialLinks = [{
+    icon: Instagram,
+    href: "#",
+    label: "Instagram"
+  }, {
+    icon: Twitter,
+    href: "#",
+    label: "Twitter"
+  }, {
+    icon: Youtube,
+    href: "#",
+    label: "YouTube"
+  }];
+  return <footer className="relative bg-card border-t border-border">
       {/* Background Pattern */}
       <div className="absolute inset-0 tech-grid opacity-5" />
       
@@ -63,11 +89,7 @@ export const FooterSection = () => {
             {/* Brand Section */}
             <div className="lg:col-span-2 space-y-6">
               <div>
-                <img 
-                  src={dystopiaLogo}
-                  alt="Dystopia"
-                  className="h-12 w-auto mb-4"
-                />
+                <img src={dystopiaLogo} alt="Dystopia" className="h-12 w-auto mb-4" />
                 <p className="text-muted-foreground font-mono text-sm leading-relaxed">
                   Premium streetwear que conecta o futuro distópico com a autenticidade urbana. 
                   Desde 2000, quebrando padrões e definindo tendências.
@@ -82,7 +104,7 @@ export const FooterSection = () => {
                 </div>
                 <div className="flex items-center space-x-3 text-sm text-muted-foreground">
                   <Phone className="h-4 w-4 text-primary" />
-                  <span className="font-mono">(98) 715-0710</span>
+                  <span className="font-mono">(19) 98715-0710</span>
                 </div>
                 <div className="flex items-center space-x-3 text-sm text-muted-foreground">
                   <Mail className="h-4 w-4 text-primary" />
@@ -92,42 +114,27 @@ export const FooterSection = () => {
 
               {/* Social Links */}
               <div className="flex space-x-4">
-                {socialLinks.map((social) => (
-                  <Button
-                    key={social.label}
-                    variant="outline"
-                    size="icon"
-                    className="bg-background/50 border-border hover:border-primary hover:bg-primary hover:text-primary-foreground"
-                    asChild
-                  >
+                {socialLinks.map(social => <Button key={social.label} variant="outline" size="icon" className="bg-background/50 border-border hover:border-primary hover:bg-primary hover:text-primary-foreground" asChild>
                     <a href={social.href} aria-label={social.label}>
                       <social.icon className="h-4 w-4" />
                     </a>
-                  </Button>
-                ))}
+                  </Button>)}
               </div>
             </div>
 
             {/* Footer Links */}
-            {footerSections.map((section) => (
-              <div key={section.title} className="space-y-4">
+            {footerSections.map(section => <div key={section.title} className="space-y-4">
                 <h3 className="font-tech font-bold text-sm text-foreground tracking-wider">
                   {section.title}
                 </h3>
                 <ul className="space-y-3">
-                  {section.links.map((link) => (
-                    <li key={link.label}>
-                      <a
-                        href={link.href}
-                        className="text-sm text-muted-foreground hover:text-primary transition-colors font-mono"
-                      >
+                  {section.links.map(link => <li key={link.label}>
+                      <a href={link.href} className="text-sm text-muted-foreground hover:text-primary transition-colors font-mono">
                         {link.label}
                       </a>
-                    </li>
-                  ))}
+                    </li>)}
                 </ul>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
 
@@ -155,16 +162,13 @@ export const FooterSection = () => {
 
         {/* Back to Top Indicator */}
         <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <Button
-            variant="outline"
-            size="icon"
-            className="bg-background border-primary hover:bg-primary hover:text-primary-foreground rounded-full"
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          >
+          <Button variant="outline" size="icon" className="bg-background border-primary hover:bg-primary hover:text-primary-foreground rounded-full" onClick={() => window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        })}>
             <span className="text-xs font-tech">↑</span>
           </Button>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
