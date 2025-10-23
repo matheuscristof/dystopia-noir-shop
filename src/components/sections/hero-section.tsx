@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-image.jpg";
-import dystopiaLogo from "@/assets/dystopia-logo.png";
+import dystopiaLogo from "@/assets/logo.svg";
 
 export const HeroSection = () => {
   return (

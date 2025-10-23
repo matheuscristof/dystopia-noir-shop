@@ -1,7 +1,7 @@
 import { Instagram, Twitter, Youtube, Mail, Phone, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import dystopiaLogo from "@/assets/dystopia-logo.png";
+import dystopiaLogo from "@/assets/logo.svg";
 export const FooterSection = () => {
   const currentYear = new Date().getFullYear();
   const footerSections = [{
