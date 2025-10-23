@@ -1,4 +1,4 @@
-import { Instagram, Twitter, Youtube, Mail, Phone, MapPin } from "lucide-react";
+import { Instagram, Music, Mail, Phone, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import dystopiaLogo from "@/assets/logo.svg";
@@ -67,16 +67,12 @@ export const FooterSection = () => {
   }];
   const socialLinks = [{
     icon: Instagram,
-    href: "#",
+    href: "https://www.instagram.com/dystopia2000/",
     label: "Instagram"
   }, {
-    icon: Twitter,
-    href: "#",
-    label: "Twitter"
-  }, {
-    icon: Youtube,
-    href: "#",
-    label: "YouTube"
+    icon: Music,
+    href: "https://www.tiktok.com/@thedystopia2000",
+    label: "TikTok"
   }];
   return <footer className="relative bg-card border-t border-border">
       {/* Background Pattern */}
@@ -100,7 +96,7 @@ export const FooterSection = () => {
               <div className="space-y-3">
                 <div className="flex items-center space-x-3 text-sm text-muted-foreground">
                   <MapPin className="h-4 w-4 text-primary" />
-                  <span className="font-mono">São Paulo, SP - Brasil</span>
+                  <span className="font-mono">Campinas, SP - Brasil</span>
                 </div>
                 <div className="flex items-center space-x-3 text-sm text-muted-foreground">
                   <Phone className="h-4 w-4 text-primary" />
@@ -108,7 +104,7 @@ export const FooterSection = () => {
                 </div>
                 <div className="flex items-center space-x-3 text-sm text-muted-foreground">
                   <Mail className="h-4 w-4 text-primary" />
-                  <span className="font-mono">hello@dystopia2000.com</span>
+                  <span className="font-mono">thedystopia2000@gmail.com</span>
                 </div>
               </div>
 
@@ -154,7 +150,7 @@ export const FooterSection = () => {
               </div>
               <div className="flex items-center space-x-2 text-xs text-muted-foreground font-mono">
                 <div className="w-2 h-2 bg-primary rounded-full animate-neon-pulse" />
-                <span>FREE SHIPPING 200+</span>
+                <span>SECURE SHIPPING</span>
               </div>
             </div>
           </div>

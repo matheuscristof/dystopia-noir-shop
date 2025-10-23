@@ -39,11 +39,11 @@ const Index = () => {
         {/* Collections Section */}
         <CollectionsSection />
 
-        {/* Featured Products Section */}
-        <FeaturedProductsSection />
-
         {/* About Section */}
         <AboutSection />
+
+        {/* Featured Products Section */}
+        <FeaturedProductsSection />
 
         {/* Lookbook Section */}
         <LookbookSection />

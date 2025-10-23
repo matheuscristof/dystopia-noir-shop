@@ -66,7 +66,7 @@ export const HeroSection = () => {
               className="text-lg px-8 py-6 font-mono border-primary text-primary hover:bg-primary hover:text-primary-foreground"
               onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              ENTER DYSTOPIA
+              ENTRAR NA DYSTOPIA
             </Button>
           </div>
 
