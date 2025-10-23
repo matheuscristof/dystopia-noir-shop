@@ -58,7 +58,7 @@ export const HeroSection = () => {
               className="cyber-button text-lg px-8 py-6 font-bold"
               onClick={() => document.getElementById('collections')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              SHOP NOW
+              Compre AGORA
             </Button>
             <Button 
               variant="outline" 
