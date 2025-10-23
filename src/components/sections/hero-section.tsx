@@ -46,9 +46,9 @@ export const HeroSection = () => {
 
           {/* Subheadline */}
           <p className="text-xl md:text-2xl text-muted-foreground mb-8 font-mono animate-slide-up" style={{animationDelay: '0.4s'}}>
-            Premium streetwear que conecta o{" "}
-            <span className="text-accent">futuro distópico</span> com a{" "}
-            <span className="text-primary">autenticidade urbana</span>
+            Streetwear que conecta o{" "}
+            <span className="text-accent">futuro dystopico</span> com a{" "}
+            <span className="text-primary">melhor qualidade do mercado</span>
           </p>
 
           {/* CTA Buttons */}
