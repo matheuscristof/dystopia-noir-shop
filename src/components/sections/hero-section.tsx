@@ -30,7 +30,7 @@ export const HeroSection = () => {
             <img 
               src={dystopiaLogo}
               alt="Dystopia 2000"
-              className="h-16 md:h-20 w-auto neon-glow"
+              className="h-16 md:h-20 w-auto"
             />
           </div>
 

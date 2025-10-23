@@ -31,7 +31,7 @@ export const NavHeader = ({ cartItemsCount = 0, onCartClick }: NavHeaderProps) =
               <img 
                 src={dystopiaLogo} 
                 alt="Dystopia" 
-                className="h-8 w-auto neon-glow"
+                className="h-8 w-auto"
               />
             </Link>
           </div>
