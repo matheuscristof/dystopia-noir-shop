@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ShoppingCart, Menu, X, User, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -12,7 +12,17 @@ interface NavHeaderProps {
 
 export const NavHeader = ({ cartItemsCount = 0, onCartClick }: NavHeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navItems = [
     { label: "Streetwear", href: "/streetwear" },
@@ -22,22 +32,36 @@ export const NavHeader = ({ cartItemsCount = 0, onCartClick }: NavHeaderProps) =
   ];
 
   return (
-    <header className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border">
-      <nav className="container mx-auto px-4 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+    <header className={`fixed z-50 transition-all duration-500 ease-out ${
+      isScrolled 
+        ? "top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl" 
+        : "top-0 left-0 w-full"
+    }`}>
+      <nav className={`transition-all duration-500 ease-out ${
+        isScrolled
+          ? "bg-background/95 backdrop-blur-xl border border-border/50 rounded-full shadow-[0_8px_32px_hsl(var(--primary)/0.15)]"
+          : "bg-background/80 backdrop-blur-md border-b border-border"
+      } ${isScrolled ? "px-6 lg:px-8" : "container mx-auto px-4 lg:px-8"}`}>
+        <div className={`flex items-center justify-between transition-all duration-500 ${
+          isScrolled ? "h-14" : "h-16"
+        }`}>
           {/* Logo */}
           <div className="flex items-center space-x-4">
-            <Link to="/">
+            <Link to="/" className="transition-transform duration-300 hover:scale-105">
               <img 
                 src={dystopiaLogo} 
                 alt="Dystopia" 
-                className="h-8 w-auto"
+                className={`w-auto transition-all duration-500 ${
+                  isScrolled ? "h-6" : "h-8"
+                }`}
               />
             </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className={`hidden md:flex items-center transition-all duration-500 ${
+            isScrolled ? "space-x-6" : "space-x-8"
+          }`}>
             {navItems.map((item) => (
               item.href.startsWith("#") ? (
                 <a
@@ -64,7 +88,9 @@ export const NavHeader = ({ cartItemsCount = 0, onCartClick }: NavHeaderProps) =
           </div>
 
           {/* Actions */}
-          <div className="flex items-center space-x-4">
+          <div className={`flex items-center transition-all duration-500 ${
+            isScrolled ? "space-x-2" : "space-x-4"
+          }`}>
             <Button variant="ghost" size="icon" className="hidden md:flex">
               <Search className="h-4 w-4" />
             </Button>
