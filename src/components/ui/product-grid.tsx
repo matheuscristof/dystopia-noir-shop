@@ -9,6 +9,7 @@ import { Slider } from "@/components/ui/slider";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Product } from "@/data/products";
 import { useCart } from "@/hooks/use-cart";
+import { useToast } from "@/hooks/use-toast";
 
 interface ProductGridProps {
   products: Product[];
@@ -28,6 +29,7 @@ interface Filters {
 
 export const ProductGrid = ({ products, title, description }: ProductGridProps) => {
   const cart = useCart();
+  const { toast } = useToast();
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [selectedSize, setSelectedSize] = useState<string>("");
   const [selectedColor, setSelectedColor] = useState<string>("");
@@ -114,6 +116,16 @@ export const ProductGrid = ({ products, title, description }: ProductGridProps) 
       image: product.image,
     });
 
+    toast({
+      title: "Produto adicionado!",
+      description: `${product.name} (${selectedSize}, ${selectedColor}) foi adicionado ao carrinho.`,
+      duration: 3000,
+    });
+
+    setSelectedProduct(null);
+    setSelectedSize("");
+    setSelectedColor("");
+    
     cart.openCart();
   };
 
