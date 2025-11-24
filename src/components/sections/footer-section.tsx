@@ -1,4 +1,4 @@
-import { Instagram, Music, Mail, Phone, MapPin } from "lucide-react";
+import { Instagram, Video, Mail, Phone, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import dystopiaLogo from "@/assets/logo.svg";
@@ -70,7 +70,7 @@ export const FooterSection = () => {
     href: "https://www.instagram.com/dystopia2000/",
     label: "Instagram"
   }, {
-    icon: Music,
+    icon: Video,
     href: "https://www.tiktok.com/@thedystopia2000",
     label: "TikTok"
   }];

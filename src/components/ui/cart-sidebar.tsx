@@ -3,6 +3,7 @@ import { X, Plus, Minus, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { Checkbox } from "@/components/ui/checkbox";
 
 interface CartItem {
   id: string;
@@ -29,8 +30,30 @@ export const CartSidebar = ({
   onUpdateQuantity, 
   onRemoveItem 
 }: CartSidebarProps) => {
+  const [selectedItems, setSelectedItems] = useState<Set<string>>(new Set());
+  
   const total = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
+  
+  const selectedTotal = items
+    .filter(item => selectedItems.has(`${item.id}-${item.size}-${item.color}`))
+    .reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  
+  const selectedCount = items
+    .filter(item => selectedItems.has(`${item.id}-${item.size}-${item.color}`))
+    .reduce((sum, item) => sum + item.quantity, 0);
+
+  const toggleItemSelection = (itemKey: string) => {
+    setSelectedItems(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(itemKey)) {
+        newSet.delete(itemKey);
+      } else {
+        newSet.add(itemKey);
+      }
+      return newSet;
+    });
+  };
 
   if (!isOpen) return null;
 
@@ -74,8 +97,15 @@ export const CartSidebar = ({
               </div>
             ) : (
               <div className="p-6 space-y-6">
-                {items.map((item) => (
-                  <div key={`${item.id}-${item.size}-${item.color}`} className="flex space-x-4">
+                {items.map((item) => {
+                  const itemKey = `${item.id}-${item.size}-${item.color}`;
+                  return (
+                  <div key={itemKey} className="flex space-x-3">
+                    <Checkbox
+                      checked={selectedItems.has(itemKey)}
+                      onCheckedChange={() => toggleItemSelection(itemKey)}
+                      className="mt-1"
+                    />
                     <div className="flex-shrink-0 w-20 h-20 bg-muted rounded-lg overflow-hidden">
                       <img 
                         src={item.image} 
@@ -131,7 +161,7 @@ export const CartSidebar = ({
                       </div>
                     </div>
                   </div>
-                ))}
+                )})}
               </div>
             )}
           </div>
@@ -140,16 +170,34 @@ export const CartSidebar = ({
           {items.length > 0 && (
             <div className="border-t border-border p-6 space-y-4">
               <Separator />
+              
+              {selectedCount > 0 && (
+                <div className="bg-primary/10 border border-primary/20 rounded-lg p-3 space-y-2">
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="text-muted-foreground">Itens selecionados ({selectedCount})</span>
+                    <span className="font-medium text-foreground">
+                      R$ {selectedTotal.toFixed(2)}
+                    </span>
+                  </div>
+                </div>
+              )}
+              
               <div className="flex justify-between items-center">
-                <span className="text-lg font-semibold">Total</span>
+                <span className="text-lg font-semibold">Total do Carrinho</span>
                 <span className="text-lg font-bold text-primary">
                   R$ {total.toFixed(2)}
                 </span>
               </div>
               
               <div className="space-y-2">
-                <Button className="w-full cyber-button" size="lg">
-                  Finalizar Compra
+                <Button 
+                  className="w-full cyber-button" 
+                  size="lg"
+                  disabled={selectedCount === 0}
+                >
+                  {selectedCount > 0 
+                    ? `Comprar (${selectedCount} ${selectedCount === 1 ? 'item' : 'itens'})` 
+                    : 'Selecione itens para comprar'}
                 </Button>
                 <Button variant="outline" className="w-full" onClick={onClose}>
                   Continuar Comprando
