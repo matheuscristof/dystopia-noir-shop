@@ -39,7 +39,7 @@ export const NewsletterSection = () => {
             </Badge>
             
             <h2 className="text-4xl md:text-5xl font-tech font-black mb-6">
-              <span className="text-foreground">VENHA FAZER PARTE DA      </span>
+              <span className="text-foreground">VENHAM FAZER PARTE DA                                                                                                                                                                                                                                                                                                                                                                                              </span>
               <br />
               <span className="text-primary">DYSTOPIA</span>
             </h2>

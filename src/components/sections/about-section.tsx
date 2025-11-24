@@ -88,7 +88,7 @@ export const AboutSection = () => {
               </div>
               <div className="flex items-center space-x-2 bg-card/50 px-4 py-2 rounded-lg border border-border">
                 <div className="w-2 h-2 bg-destructive rounded-full animate-neon-pulse" />
-                <span className="text-sm font-mono text-muted-foreground">QUALIDADE PREMIUM  </span>
+                <span className="text-sm font-mono text-muted-foreground">QUALIDADE PREMIUM   </span>
               </div>
             </div>
           </div>
