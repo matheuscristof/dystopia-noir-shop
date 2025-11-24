@@ -35,13 +35,13 @@ export const NavHeader = ({ cartItemsCount = 0, onCartClick }: NavHeaderProps) =
     <header className={`fixed z-50 transition-all duration-500 ease-out ${
       isScrolled 
         ? "top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl" 
-        : "top-0 left-0 w-full"
+        : "top-0 left-0 right-0 w-full"
     }`}>
       <nav className={`transition-all duration-500 ease-out ${
         isScrolled
           ? "bg-background/95 backdrop-blur-xl border border-border/50 rounded-full shadow-[0_8px_32px_hsl(var(--primary)/0.15)]"
           : "bg-background/80 backdrop-blur-md border-b border-border"
-      } ${isScrolled ? "px-6 lg:px-8" : "container mx-auto px-4 lg:px-8"}`}>
+      } px-4 lg:px-8 ${isScrolled ? "px-6 lg:px-8" : ""}`}>
         <div className={`flex items-center justify-between transition-all duration-500 ${
           isScrolled ? "h-14" : "h-16"
         }`}>
