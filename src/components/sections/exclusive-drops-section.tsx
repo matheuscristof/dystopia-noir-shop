@@ -2,49 +2,14 @@ import { useState, useEffect } from "react";
 import { Clock, ShoppingCart, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import dropsImage from "@/assets/collection-drops.jpg";
-
-interface Product {
-  id: string;
-  name: string;
-  price: number;
-  originalPrice?: number;
-  image: string;
-  stock: number;
-  isLimited: boolean;
-}
-
-const exclusiveProducts: Product[] = [
-  {
-    id: "drop-001",
-    name: "CYBER HOODIE GHOST",
-    price: 299,
-    originalPrice: 399,
-    image: dropsImage,
-    stock: 3,
-    isLimited: true
-  },
-  {
-    id: "drop-002", 
-    name: "TECH PANTS NEON",
-    price: 249,
-    originalPrice: 329,
-    image: dropsImage,
-    stock: 7,
-    isLimited: true
-  },
-  {
-    id: "drop-003",
-    name: "DYSTOPIA CAP LIMITED",
-    price: 89,
-    originalPrice: 119,
-    image: dropsImage,
-    stock: 12,
-    isLimited: true
-  }
-];
+import { useProducts, Product } from "@/hooks/use-products";
 
 export const ExclusiveDropsSection = () => {
+  const { data: allProducts } = useProducts("drops");
+  
+  // Get exclusive drops (limited items)
+  const exclusiveProducts = allProducts?.filter(p => p.is_limited).slice(0, 3) || [];
+  
   const [timeLeft, setTimeLeft] = useState({
     days: 2,
     hours: 14,
@@ -176,7 +141,7 @@ export const ExclusiveDropsSection = () => {
                 </Badge>
                 
                 {/* Limited Badge */}
-                {product.isLimited && (
+                {product.is_limited && (
                   <Badge className="absolute top-4 right-4 bg-accent text-accent-foreground animate-neon-pulse">
                     LIMITED
                   </Badge>
@@ -207,14 +172,14 @@ export const ExclusiveDropsSection = () => {
                   <span className="text-xl font-bold text-destructive">
                     R$ {product.price}
                   </span>
-                  {product.originalPrice && (
+                  {product.original_price && (
                     <span className="text-sm text-muted-foreground line-through">
-                      R$ {product.originalPrice}
+                      R$ {product.original_price}
                     </span>
                   )}
-                  {product.originalPrice && (
+                  {product.original_price && (
                     <Badge variant="secondary" className="text-xs">
-                      -{Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}%
+                      -{Math.round(((product.original_price - product.price) / product.original_price) * 100)}%
                     </Badge>
                   )}
                 </div>

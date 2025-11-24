@@ -1,11 +1,11 @@
 import { NavHeader } from "@/components/ui/nav-header";
 import { CartSidebar } from "@/components/ui/cart-sidebar";
 import { ProductGrid } from "@/components/ui/product-grid";
-import { getProductsByCategory } from "@/data/products";
+import { useProducts } from "@/hooks/use-products";
 import { useCart } from "@/hooks/use-cart";
 
 const AccessoriesPage = () => {
-  const accessoriesProducts = getProductsByCategory("accessories");
+  const { data: accessoriesProducts, isLoading } = useProducts("accessories");
   const cart = useCart();
 
   return (
