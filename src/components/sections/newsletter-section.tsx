@@ -3,19 +3,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Mail, Check } from "lucide-react";
-
 export const NewsletterSection = () => {
   const [email, setEmail] = useState("");
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-    
     if (!email) return;
-    
     setIsLoading(true);
-    
+
     // Simulate API call
     setTimeout(() => {
       setIsSubscribed(true);
@@ -23,16 +19,16 @@ export const NewsletterSection = () => {
       setEmail("");
     }, 2000);
   };
-
-  return (
-    <section className="py-20 lg:py-32 relative overflow-hidden">
+  return <section className="py-20 lg:py-32 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-background to-accent/10" />
       <div className="absolute inset-0 tech-grid opacity-20" />
       
       {/* Floating Elements */}
       <div className="absolute top-1/4 left-10 w-20 h-20 border border-primary/30 rotate-45 animate-neon-pulse" />
-      <div className="absolute bottom-1/4 right-10 w-16 h-16 border border-accent/30 rotate-12 animate-neon-pulse" style={{animationDelay: '1s'}} />
+      <div className="absolute bottom-1/4 right-10 w-16 h-16 border border-accent/30 rotate-12 animate-neon-pulse" style={{
+      animationDelay: '1s'
+    }} />
       
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="max-w-2xl mx-auto text-center">
@@ -43,13 +39,9 @@ export const NewsletterSection = () => {
             </Badge>
             
             <h2 className="text-4xl md:text-5xl font-tech font-black mb-6">
-              <span className="text-foreground">
-                ENTER THE
-              </span>
+              <span className="text-foreground">VENHA FAZER PARTE DA      </span>
               <br />
-              <span className="text-primary">
-                DYSTOPIA
-              </span>
+              <span className="text-primary">DYSTOPIA</span>
             </h2>
             
             <p className="text-lg text-muted-foreground font-mono leading-relaxed">
@@ -60,45 +52,26 @@ export const NewsletterSection = () => {
           </div>
 
           {/* Form */}
-          {!isSubscribed ? (
-            <form onSubmit={handleSubscribe} className="space-y-6">
+          {!isSubscribed ? <form onSubmit={handleSubscribe} className="space-y-6">
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                   <Mail className="h-5 w-5 text-muted-foreground" />
                 </div>
-                <Input
-                  type="email"
-                  placeholder="seu@email.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="pl-12 h-14 text-lg bg-card/50 border-border focus:border-primary font-mono"
-                  required
-                />
+                <Input type="email" placeholder="seu@email.com" value={email} onChange={e => setEmail(e.target.value)} className="pl-12 h-14 text-lg bg-card/50 border-border focus:border-primary font-mono" required />
               </div>
               
-              <Button 
-                type="submit"
-                size="lg"
-                className="w-full h-14 text-lg font-tech font-bold cyber-button"
-                disabled={isLoading}
-              >
-                {isLoading ? (
-                  <div className="flex items-center space-x-2">
+              <Button type="submit" size="lg" className="w-full h-14 text-lg font-tech font-bold cyber-button" disabled={isLoading}>
+                {isLoading ? <div className="flex items-center space-x-2">
                     <div className="w-4 h-4 border-2 border-primary-foreground border-t-transparent rounded-full animate-spin" />
                     <span>CONECTANDO...</span>
-                  </div>
-                ) : (
-                  "ENTER THE DYSTOPIA"
-                )}
+                  </div> : "ENTER THE DYSTOPIA"}
               </Button>
               
               <p className="text-xs text-muted-foreground font-mono">
                 Ao se inscrever, você concorda em receber comunicações da DYSTOPIA. 
                 Você pode cancelar a qualquer momento.
               </p>
-            </form>
-          ) : (
-            <div className="space-y-6">
+            </form> : <div className="space-y-6">
               <div className="flex items-center justify-center space-x-3 text-accent">
                 <div className="w-12 h-12 bg-accent/20 border border-accent rounded-full flex items-center justify-center">
                   <Check className="h-6 w-6" />
@@ -130,8 +103,7 @@ export const NewsletterSection = () => {
                   </div>
                 </div>
               </div>
-            </div>
-          )}
+            </div>}
 
           {/* Social Proof */}
           <div className="mt-12 flex items-center justify-center space-x-8 text-sm font-mono text-muted-foreground">
@@ -146,6 +118,5 @@ export const NewsletterSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };

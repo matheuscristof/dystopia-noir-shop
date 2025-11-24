@@ -1,13 +1,14 @@
 export const AboutSection = () => {
-  return (
-    <section id="about" className="py-20 lg:py-32 relative overflow-hidden">
+  return <section id="about" className="py-20 lg:py-32 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-tech" />
       <div className="absolute inset-0 tech-grid opacity-10" />
       
       {/* Floating Elements */}
       <div className="absolute top-20 left-10 w-32 h-32 border border-primary/20 rotate-45 animate-neon-pulse" />
-      <div className="absolute bottom-20 right-10 w-24 h-24 border border-accent/20 rotate-12 animate-neon-pulse" style={{animationDelay: '1s'}} />
+      <div className="absolute bottom-20 right-10 w-24 h-24 border border-accent/20 rotate-12 animate-neon-pulse" style={{
+      animationDelay: '1s'
+    }} />
       
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
@@ -87,12 +88,11 @@ export const AboutSection = () => {
               </div>
               <div className="flex items-center space-x-2 bg-card/50 px-4 py-2 rounded-lg border border-border">
                 <div className="w-2 h-2 bg-destructive rounded-full animate-neon-pulse" />
-                <span className="text-sm font-mono text-muted-foreground">PREMIUM QUALITY</span>
+                <span className="text-sm font-mono text-muted-foreground">QUALIDADE PREMIUM  </span>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
