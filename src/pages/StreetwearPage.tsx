@@ -1,11 +1,11 @@
 import { NavHeader } from "@/components/ui/nav-header";
 import { CartSidebar } from "@/components/ui/cart-sidebar";
 import { ProductGrid } from "@/components/ui/product-grid";
-import { getProductsByCategory } from "@/data/products";
+import { useProducts } from "@/hooks/use-products";
 import { useCart } from "@/hooks/use-cart";
 
 const StreetwearPage = () => {
-  const streetwearProducts = getProductsByCategory("streetwear");
+  const { data: streetwearProducts, isLoading } = useProducts("streetwear");
   const cart = useCart();
 
   return (
@@ -24,9 +24,10 @@ const StreetwearPage = () => {
       />
 
       <ProductGrid
-        products={streetwearProducts}
+        products={streetwearProducts || []}
         title="STREETWEAR"
         description="Coleção essencial de streetwear tech com design futurista e qualidade premium"
+        isLoading={isLoading}
       />
     </div>
   );

@@ -3,55 +3,15 @@ import { Star, ShoppingCart, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useCart } from "@/hooks/use-cart";
-import productHoodie from "@/assets/product-hoodie.jpg";
-import productPants from "@/assets/product-pants.jpg";
-
-interface Product {
-  id: string;
-  name: string;
-  price: number;
-  originalPrice?: number;
-  rating: number;
-  reviews: number;
-  image: string;
-  colors: string[];
-  sizes: string[];
-  isNew?: boolean;
-  isLimited?: boolean;
-  description: string;
-}
-
-const featuredProducts: Product[] = [
-  {
-    id: "prod-001",
-    name: "CYBER HOODIE GHOST",
-    price: 299,
-    originalPrice: 399,
-    rating: 4.8,
-    reviews: 127,
-    image: productHoodie,
-    colors: ["Black", "Dark Purple", "Neon Green"],
-    sizes: ["S", "M", "L", "XL", "XXL"],
-    isNew: true,
-    description: "Premium tech hoodie com detalhes neon e acabamento cyberpunk"
-  },
-  {
-    id: "prod-002",
-    name: "TECH PANTS NEON",
-    price: 249,
-    originalPrice: 329,
-    rating: 4.9,
-    reviews: 89,
-    image: productPants,
-    colors: ["Black", "Dark Gray", "Electric Blue"],
-    sizes: ["28", "30", "32", "34", "36", "38"],
-    isLimited: true,
-    description: "Calça tech com elementos futuristas e cortes anatômicos"
-  }
-];
+import { useProducts, Product } from "@/hooks/use-products";
 
 export const FeaturedProductsSection = () => {
   const cart = useCart();
+  const { data: allProducts } = useProducts();
+  
+  // Get featured products (first 2 products or fallback)
+  const featuredProducts = allProducts?.slice(0, 2) || [];
+  
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [selectedSize, setSelectedSize] = useState<string>("");
   const [selectedColor, setSelectedColor] = useState<string>("");
@@ -113,10 +73,10 @@ export const FeaturedProductsSection = () => {
                 
                 {/* Badges */}
                 <div className="absolute top-4 left-4 flex space-x-2">
-                  {product.isNew && (
-                    <Badge className="bg-accent text-accent-foreground">NEW</Badge>
-                  )}
-                  {product.isLimited && (
+                {product.is_new && (
+                  <Badge className="bg-accent text-accent-foreground">NEW</Badge>
+                )}
+                {product.is_limited && (
                     <Badge className="bg-destructive text-destructive-foreground animate-neon-pulse">
                       LIMITED
                     </Badge>
@@ -179,13 +139,13 @@ export const FeaturedProductsSection = () => {
                   <span className="text-2xl font-bold text-primary">
                     R$ {product.price}
                   </span>
-                  {product.originalPrice && (
+                  {product.original_price && (
                     <>
                       <span className="text-lg text-muted-foreground line-through">
-                        R$ {product.originalPrice}
+                        R$ {product.original_price}
                       </span>
                       <Badge variant="secondary" className="text-xs">
-                        -{Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}%
+                        -{Math.round(((product.original_price - product.price) / product.original_price) * 100)}%
                       </Badge>
                     </>
                   )}

@@ -1,11 +1,11 @@
 import { NavHeader } from "@/components/ui/nav-header";
 import { CartSidebar } from "@/components/ui/cart-sidebar";
 import { ProductGrid } from "@/components/ui/product-grid";
-import { getProductsByCategory } from "@/data/products";
+import { useProducts } from "@/hooks/use-products";
 import { useCart } from "@/hooks/use-cart";
 
 const LimitedDropsPage = () => {
-  const dropsProducts = getProductsByCategory("drops");
+  const { data: dropsProducts, isLoading } = useProducts("drops");
   const cart = useCart();
 
   return (

@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox";
 import { Slider } from "@/components/ui/slider";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { Product } from "@/data/products";
+import { Product } from "@/hooks/use-products";
 import { useCart } from "@/hooks/use-cart";
 import { useToast } from "@/hooks/use-toast";
 
@@ -15,6 +15,7 @@ interface ProductGridProps {
   products: Product[];
   title: string;
   description?: string;
+  isLoading?: boolean;
 }
 
 interface Filters {
@@ -27,7 +28,7 @@ interface Filters {
   showOnlyLimited: boolean;
 }
 
-export const ProductGrid = ({ products, title, description }: ProductGridProps) => {
+export const ProductGrid = ({ products, title, description, isLoading = false }: ProductGridProps) => {
   const cart = useCart();
   const { toast } = useToast();
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -76,10 +77,10 @@ export const ProductGrid = ({ products, title, description }: ProductGridProps) 
       if (filters.showOnlyInStock && product.stock === 0) return false;
 
       // New filter
-      if (filters.showOnlyNew && !product.isNew) return false;
+      if (filters.showOnlyNew && !product.is_new) return false;
 
       // Limited filter
-      if (filters.showOnlyLimited && !product.isLimited) return false;
+      if (filters.showOnlyLimited && !product.is_limited) return false;
 
       return true;
     });
@@ -343,7 +344,12 @@ export const ProductGrid = ({ products, title, description }: ProductGridProps) 
 
           {/* Products Grid */}
           <div className="flex-1">
-            {filteredProducts.length === 0 ? (
+            {isLoading ? (
+              <div className="text-center py-16">
+                <div className="animate-spin h-12 w-12 border-4 border-primary border-t-transparent rounded-full mx-auto mb-4" />
+                <p className="text-muted-foreground font-mono">Carregando produtos...</p>
+              </div>
+            ) : filteredProducts.length === 0 ? (
               <div className="text-center py-16">
                 <h3 className="text-xl font-tech font-bold mb-2">Nenhum produto encontrado</h3>
                 <p className="text-muted-foreground font-mono mb-4">
@@ -368,15 +374,15 @@ export const ProductGrid = ({ products, title, description }: ProductGridProps) 
                       
                       {/* Badges */}
                       <div className="absolute top-4 left-4 flex flex-col space-y-2">
-                        {product.isNew && (
+                        {product.is_new && (
                           <Badge className="bg-accent text-accent-foreground">NEW</Badge>
                         )}
-                        {product.isLimited && (
+                        {product.is_limited && (
                           <Badge className="bg-destructive text-destructive-foreground animate-neon-pulse">
                             LIMITED
                           </Badge>
                         )}
-                        {product.isBestseller && (
+                        {product.is_bestseller && (
                           <Badge className="bg-primary text-primary-foreground">
                             BESTSELLER
                           </Badge>
@@ -445,13 +451,13 @@ export const ProductGrid = ({ products, title, description }: ProductGridProps) 
                         <span className="text-xl font-bold text-primary">
                           R$ {product.price}
                         </span>
-                        {product.originalPrice && (
+                        {product.original_price && (
                           <>
                             <span className="text-sm text-muted-foreground line-through">
-                              R$ {product.originalPrice}
+                              R$ {product.original_price}
                             </span>
                             <Badge variant="secondary" className="text-xs">
-                              -{Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}%
+                              -{Math.round(((product.original_price - product.price) / product.original_price) * 100)}%
                             </Badge>
                           </>
                         )}
