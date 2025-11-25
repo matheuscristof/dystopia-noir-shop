@@ -14,6 +14,71 @@ export type Database = {
   }
   public: {
     Tables: {
+      order_items: {
+        Row: {
+          color: string
+          id: string
+          order_id: string
+          price: number
+          product_name: string
+          quantity: number
+          size: string
+        }
+        Insert: {
+          color: string
+          id?: string
+          order_id: string
+          price: number
+          product_name: string
+          quantity: number
+          size: string
+        }
+        Update: {
+          color?: string
+          id?: string
+          order_id?: string
+          price?: number
+          product_name?: string
+          quantity?: number
+          size?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "order_items_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      orders: {
+        Row: {
+          created_at: string
+          customer_email: string
+          customer_name: string
+          id: string
+          status: string
+          total_amount: number
+        }
+        Insert: {
+          created_at?: string
+          customer_email: string
+          customer_name: string
+          id?: string
+          status?: string
+          total_amount: number
+        }
+        Update: {
+          created_at?: string
+          customer_email?: string
+          customer_name?: string
+          id?: string
+          status?: string
+          total_amount?: number
+        }
+        Relationships: []
+      }
       products: {
         Row: {
           category: string
